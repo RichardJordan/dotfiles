@@ -111,7 +111,7 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = ~/.yadr/git/gitignore
+	excludesfile = /Users/richard/.yadr/git/gitignore
 [advice]
   statusHints = false
 [diff]
@@ -130,8 +130,20 @@
 [ghi]
 	token = !security find-internet-password -a RichardJordan -s github.com -l 'ghi token' -w
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
+	clean = git-lfs clean -- %f
 [credential]
 	helper = osxkeychain
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Richard Jordan
+	email = richarddjordan@gmail.com
+[commit]
+	template = /Users/richard/.stCommitMsg
